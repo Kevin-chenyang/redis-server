@@ -12,13 +12,17 @@ import java.time.format.DateTimeFormatter;
 public class CreateOrderCode {
 
 
-
+    /**
+     * 时间戳+随机数+redis自增序列+用户ID
+     * @param userId
+     * @return
+     */
     private String getOrderCode(String userId){
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
         String timeStr = LocalDateTime.now().format(format);
         int num = (int) (Math.random() * 900 + 100);
-        String s = timeStr + num + userId;
+        String code = timeStr + num + userId;
         //利用redis的自增功能获取最新的序列号
-        return null;
+        return code;
     }
 }
